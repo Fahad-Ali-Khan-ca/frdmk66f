@@ -1,0 +1,49 @@
+// **************************************************************************
+// 
+// Author: Jacky Lau, 01/2024
+// Adapted from Petr Olivka, 02/2022
+//
+// **************************************************************************
+
+#include "mbed.h"
+
+
+
+int main()
+{
+    // Initialise the digital pin LED1 as an output
+    DigitalOut led(LED1);
+    DigitalOut led2(LED2);
+
+    DigitalIn button(PTD1); // Replace XX with your input pin
+    DigitalIn button1(PTD3); // Replace XX with your input pin
+    // PART-2
+    PwmOut pwm(PTC3);//lace XX with your pwm pin
+
+    while (true)
+    {
+        if (!button) //BUTTON NOT PRESSED - state is high
+        	//here we are checking for a low state
+        {
+            led = 0; // LED OFF IN HIGH STATE
+        } else
+        {
+            led = 1; // LED ON IN LOW STATE
+        }
+
+        if (!button1)//button not pressed state is low
+        	//here we are checking for high state
+        {
+            led2 = 0; // LED off IN LOW STATE
+        } else
+        {
+            led2 = 1; // LED on IN HIGH STATE
+        }
+
+    }
+
+    pwm.period(0.05f);
+    pwm.write(0.50f); // duty cycle 0.5f = 50%
+
+
+}
